@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 # 可以用来指定 session 保存的位置
 from flask_session import Session
 from config import config
-
+from info.modules.index import index_blu
 
 # 初始化数据库
 #  在Flask很多扩展里面都可以先初始化扩展的对象，然后再去调用 init_app 方法去初始化
@@ -29,5 +29,8 @@ def create_app(config_name):
 
     # 设置session保存指定位置
     Session(app)
+
+    # 注册蓝图
+    app.register_blueprint(index_blu)
 
     return app
