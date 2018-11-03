@@ -8,7 +8,6 @@ from redis import StrictRedis
 
 class Config(object):
     """工程配置信息"""
-    Debug = True
     SECRET_KEY = "iECgbYWReMNxkRprrzMo5KAQYnb2UeZ3bwvReTSt+VSESW0OB8zbglT+6rEcDW9X"
 
     # 数据库的配置信息
@@ -30,3 +29,25 @@ class Config(object):
     # 设置过期时间
     PERMANENT_SESSION_LIFETIME = 86400 * 2
 
+
+class DevelopmentConfig(Config):
+    """开发环境下的配置"""
+    DEBUG = True
+
+
+class ProductionConfig(Config):
+    """生产环境下的配置"""
+    DEBUG = False
+
+
+class TestingConfig(Config):
+    """单元测试环境下的配置"""
+    DEBUG = True
+    TESTING = True
+
+
+config = {
+    "development": DevelopmentConfig,
+    "production": ProductionConfig,
+    "testing": TestingConfig
+}
